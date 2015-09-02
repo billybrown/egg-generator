@@ -18,25 +18,25 @@ module.exports = yeoman.generators.Base.extend({
         type: 'input',
         name: 'name',
         message: 'What is your name?',
-        default: 'unknown'
+        default: 'Bill Brown'
       },
       {
         type: 'input',
         name: 'client',
-        message: 'What is the full name of the project or client? (Bright Focus Foundation)',
-        default: 'unknown'
+        message: 'What is the full name of the project or client?',
+        default: 'Echo & Co.'
       },
       {
         type: 'input',
         name: 'client',
-        message: 'What is project short code? (BFF)',
-        default: 'unknown'
+        message: 'What is project short code?',
+        default: 'ECHO'
       },
       {
         type: 'input',
         name: 'theme',
-        message: 'What is the theme name? (Brightbox)',
-        default: 'unknown'
+        message: 'What is the theme name?',
+        default: 'Echokit'
       },
       {
         type: 'confirm',
@@ -48,7 +48,7 @@ module.exports = yeoman.generators.Base.extend({
         type: 'input',
         name: 'description',
         message: 'Short (one sentence) description of project:',
-        default: 'Responsive Theme'
+        default: 'Only the best frickin theme ever'
       },
       {
         type: 'list',
@@ -104,7 +104,7 @@ module.exports = yeoman.generators.Base.extend({
     this.prompt(prompts, function (props) {
       this.props = props;
 
-      var plugins = props.features;
+      var plugins = props.plugins;
 
       function hasAsset(feat) {
         return plugins.indexOf(feat) !== -1;
@@ -147,8 +147,8 @@ module.exports = yeoman.generators.Base.extend({
       );
       this.fs.copy(
         this.templatePath('Gruntfile.js'),
-        this.destinationPath('Gruntfile.js'),
-        );
+        this.destinationPath('Gruntfile.js')
+      );
       this.fs.copy(
         this.templatePath('.nvmrc'),
         this.destinationPath('.nvmrc')
@@ -157,9 +157,15 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('.gitignore'),
         this.destinationPath('.gitignore')
       );
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath('Readme.md'),
-        this.destinationPath('Readme.md')
+        this.destinationPath('Readme.md'),
+            { 
+              theme: this.props.theme,
+              description: this.props.description,
+              cms: this.props.cms,
+              client: this.props.client
+            }
       );
       this.fs.copy(
         this.templatePath('patternlab'),
@@ -173,11 +179,14 @@ module.exports = yeoman.generators.Base.extend({
       if (this.props.cms == "Drupal") {
         this.fs.copyTpl(
           this.templatePath('info.info'),
-          this.destinationPath('info.info'),
+          this.destinationPath(this.props.theme + '.info'),
             { 
               theme: this.props.theme,
               description: this.props.description,
-              ie8: this.props.ie8
+              ie8: this.props.ie8,
+              client: this.props.client,
+              cms: this.props.cms,
+              author: this.props.name
             }
         );
         this.fs.copy(

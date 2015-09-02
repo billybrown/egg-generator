@@ -1,8 +1,8 @@
-# Welcome to {{ your theme }}
+# Welcome to <%= theme %>
 
-{{ your theme }} is a responsive {{ cms }} theme for {{ client }}
+<%= theme %> is a responsive <%= cms %> theme for <%= client %>. <%= description %>
 
-@author: Echo & Co., http://echo.co
+@author: <%= author %> and friends at Echo & Co., http://echo.co
 
 It uses a few core tools:
 
@@ -23,7 +23,7 @@ It uses a few core tools:
 
 # Directory Structure
 
-  {{ your theme }}
+  <%= theme %>
     │  
     ├── /build: all production ready assets. All compiled by grunt. Do not edit manually.
     │

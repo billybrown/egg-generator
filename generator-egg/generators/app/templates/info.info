@@ -1,6 +1,6 @@
 
 name = <%= theme %>
-description = <%= description %>
+description = <%= theme %> is a responsive <%= cms %> theme for <%= client %>. <%= description %>
 version = 1.x
 core = 7.x
 

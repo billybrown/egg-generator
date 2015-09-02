@@ -62,15 +62,6 @@ module.exports.tasks = {
               'build/js/plugins.min.js': ['src/js/temp/compiled_bower.js', 'src/js/scripts.js']
             }
         }
-    },
-
-    confirm: {
-        bower: {
-            options: {
-                question: 'You are about to run bower install. Have you pulled the latest version of the repo? :',
-                input: '_key:y' // Continue the flow if `Y` key is pressed.
-            }
-        }
     }
     
 };

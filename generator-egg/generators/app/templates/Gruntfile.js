@@ -64,26 +64,24 @@ module.exports = function(grunt) {
     grunt.registerTask('css', ['sass', 'autoprefixer', 'cssmin:custom', 'clean:css']);
     grunt.registerTask('js', ['jshint:custom', 'uglify' ]);
     grunt.registerTask('js_vendor', ['copy:vendorjs']);
-    grunt.registerTask('plugins_noprompt', [
+    grunt.registerTask('iconfonts', ['copy:icomoon_fonts', 'cssmin:plugins' ]);
+    grunt.registerTask('images', ['imagemin', 'copy:raster', 'copy:svg']);
+    //grunt.registerTask('sprites', ['dr-svg-sprites', 'copy:sprites', 'clean:sprites']);
+    grunt.registerTask('plugins', [
         'bower_install', 
         'bower_concat', 
         'uglify', 
         //'copy:chosensprite',
         'cssmin:plugins'
     ]);
-    grunt.registerTask('plugins', ['confirm:bower', 'plugins_noprompt']);
-    grunt.registerTask('iconfonts', ['copy:icomoon_fonts', 'cssmin:plugins' ]);
-    grunt.registerTask('images', ['imagemin', 'copy:raster', 'copy:svg']);
-    //grunt.registerTask('sprites', ['dr-svg-sprites', 'copy:sprites', 'clean:sprites']);
     grunt.registerTask('build', [
-        'confirm:bower',
         'clean:build',
         'css',
         'js',
         'js_vendor',
         //'sprites',
         'copy:icomoon_fonts',
-        'plugins_noprompt',
+        'plugins',
         'images'
     ]);
 };
