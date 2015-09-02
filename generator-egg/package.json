@@ -10,27 +10,22 @@
     "email": "b@illbrown.com",
     "url": "https://github.com/billybrown"
   },
-  "engines": {
-    "node": ">=0.10.0"
-  },
   "scripts": {
     "test": "mocha"
   },
   "files": [
-    "app"
+    "generators"
   ],
   "keywords": [
     "yeoman-generator"
   ],
   "dependencies": {
-    "yeoman-generator": "^0.17.0",
-    "chalk": "^0.5.0",
-    "yosay": "^0.3.0"
+    "chalk": "^1.0.0",
+    "html-wiring": "^1.2.0",
+    "yeoman-generator": "^0.19.0",
+    "yosay": "^1.0.2"
   },
   "devDependencies": {
     "mocha": "*"
-  },
-  "peerDependencies": {
-    "yo": ">=1.0.0"
   }
 }
